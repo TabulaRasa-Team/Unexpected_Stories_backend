@@ -38,7 +38,7 @@ public class BoardService {
         return new BoardDetailResponse(board);
     }
 
-    public Integer getId(){
+    public int countAll(){
         return boardRepository.findAll().size();
     }
 

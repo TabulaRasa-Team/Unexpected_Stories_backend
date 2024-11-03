@@ -12,6 +12,5 @@ import java.time.LocalDateTime;
 public class BoardRequest {
 
     private String title;
-
     private String content;
 }
