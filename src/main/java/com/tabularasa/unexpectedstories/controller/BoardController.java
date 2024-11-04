@@ -37,7 +37,7 @@ public class BoardController {
         return boardService.findByText_id(text_id);
     }
 
-    @GetMapping(value = "/count", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/count")
     public Map<String, Integer> countAll(){
         Map<String, Integer> counting = new HashMap<>();
         counting.put("count", boardService.countAll());
