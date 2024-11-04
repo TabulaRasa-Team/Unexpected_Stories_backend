@@ -4,7 +4,8 @@ spring:
     url: ${DB_URL}
     username: ${DB_NAME}
     password: ${DB_PASSWORD}
-
+    hikari:
+      connection-timezone: Asia/Seoul
   jpa:
     properties:
       hibernate:
