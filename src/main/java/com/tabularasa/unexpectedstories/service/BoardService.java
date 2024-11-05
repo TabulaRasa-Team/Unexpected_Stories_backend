@@ -1,7 +1,6 @@
 package com.tabularasa.unexpectedstories.service;
 
 import com.tabularasa.unexpectedstories.controller.dto.request.BoardRequest;
-import com.tabularasa.unexpectedstories.controller.dto.response.BoardDetailResponse;
 import com.tabularasa.unexpectedstories.controller.dto.response.BoardResponse;
 import com.tabularasa.unexpectedstories.domain.Board;
 import com.tabularasa.unexpectedstories.domain.repository.BoardRepository;
@@ -9,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @RequiredArgsConstructor
 @Service
@@ -20,6 +22,7 @@ public class BoardService {
         Board board = Board.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
+                .busstop(request.getBusstop())
                 .build();
         Board save = boardRepository.save(board);
         return save.getText_id();
@@ -31,15 +34,14 @@ public class BoardService {
                 .toList();
     }
 
-    public BoardDetailResponse findByText_id(Long text_id){
-        Board board = boardRepository.findById(text_id)
-                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+    public BoardResponse findRandom(){
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
 
-        return new BoardDetailResponse(board);
-    }
+        List<BoardResponse> boards = findAll();
+        int random_id = random.nextInt(boards.size());
 
-    public int countAll(){
-        return boardRepository.findAll().size();
+        return boards.get(random_id);
     }
 
     @Transactional

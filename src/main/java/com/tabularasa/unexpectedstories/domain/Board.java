@@ -31,13 +31,16 @@ public class Board {
     //private LocalDateTime date; // LocalDate 이용해 날짜 지정
     private String date;
 
+    @Column(nullable = false)
+    private String busstop;
+
     @Builder
-    public Board(String title, String content) {
+    public Board(String title, String content, String busstop) {
         this.title = title;
         this.content = content;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.HH.mm");
         this.date = LocalDateTime.now().format(formatter);
-        //this.date = LocalDateTime.now();
+        this.busstop = busstop;
 
     }
 

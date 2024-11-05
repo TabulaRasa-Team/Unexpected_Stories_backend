@@ -14,12 +14,13 @@ public class BoardResponse {
     private String title;
     private String content;
     private String date;
-    //private LocalDateTime date;
+    private String busstop;
 
     public BoardResponse(Board board) {
         this.text_id = board.getText_id();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.date = board.getDate();
+        this.busstop = board.getBusstop();
     }
 }
