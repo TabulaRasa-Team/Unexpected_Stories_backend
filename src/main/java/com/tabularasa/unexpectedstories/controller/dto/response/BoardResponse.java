@@ -13,7 +13,8 @@ public class BoardResponse {
     private Long text_id;
     private String title;
     private String content;
-    private ZonedDateTime date;
+    private String date;
+    //private LocalDateTime date;
 
     public BoardResponse(Board board) {
         this.text_id = board.getText_id();

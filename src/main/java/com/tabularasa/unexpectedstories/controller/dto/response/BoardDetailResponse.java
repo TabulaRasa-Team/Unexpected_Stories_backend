@@ -14,7 +14,8 @@ public class BoardDetailResponse {
     private Long text_id;
     private String title;
     private String content;
-    private ZonedDateTime date;
+    private String date;
+    //private LocalDateTime date;
 
     public BoardDetailResponse(Board board) {
         this.text_id = board.getText_id();

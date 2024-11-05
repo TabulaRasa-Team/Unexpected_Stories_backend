@@ -43,15 +43,7 @@ public class BoardController {
         counting.put("count", boardService.countAll());
         return counting;
     }
-/*
-    @GetMapping(value = "/count", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, Integer> countAll() {
-        Integer count = boardService.countAll();
-        Map<String, Integer> response = new HashMap<>();
-        response.put("count", count);
-        return response;
-    }
- */
+
     @PutMapping(value = "/{text_id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Long text_id, @RequestBody BoardRequest request){

@@ -28,15 +28,17 @@ public class Board {
 
     @CreatedDate// 엔티티가 생성될때 자동으로 기록됨
     @Column(updatable = false) // 한번 올라가면 수정 불가
-    private ZonedDateTime date; // LocalDate 이용해 날짜 지정
+    //private LocalDateTime date; // LocalDate 이용해 날짜 지정
+    private String date;
 
     @Builder
     public Board(String title, String content) {
         this.title = title;
         this.content = content;
-        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.hh.mm");
-        // this.date = LocalDateTime.now().format(formatter);
-        this.date = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.HH.mm");
+        this.date = LocalDateTime.now().format(formatter);
+        //this.date = LocalDateTime.now();
+
     }
 
     public void update(String title, String content) {
