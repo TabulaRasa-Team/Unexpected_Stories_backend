@@ -3,10 +3,6 @@ package com.tabularasa.unexpectedstories.controller.dto.response;
 import com.tabularasa.unexpectedstories.domain.Board;
 import lombok.Getter;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-
 // 전체 보기 할때 사용
 @Getter
 public class BoardResponse {
