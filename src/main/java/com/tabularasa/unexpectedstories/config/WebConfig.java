@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000",
                         "http://10.150.151.211:3000",
-                        "https://172.30.1.2:3000",
+                        "http://172.30.1.2:3000",
                         "http://172.30.1.14:3000",
                         "http://172.30.1.82:3000", 
                         "https://unexpected-stories-front.vercel.app",
