@@ -19,9 +19,9 @@ public class BoardController {
     // Create
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Long save(@RequestBody BoardRequest request){
+    public void save(@RequestBody BoardRequest request){
         System.out.println("Received request: " + request); // 요청 데이터 로그 확인
-        return boardService.save(request);
+        boardService.save(request);
     }
 
     // Get - all
@@ -36,17 +36,33 @@ public class BoardController {
         return boardService.findRandom();
     }
 
+    @GetMapping("/{textId}")
+    public BoardResponse findById(@PathVariable Long textId){ return boardService.findById(textId); }
+
     // Put
-    @PutMapping("/{text_id}")
+    @PutMapping("/{textId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Long text_id, @RequestBody BoardRequest request){
-        boardService.update(text_id, request);
+    public void update(@PathVariable Long textId, @RequestBody BoardRequest request){
+        boardService.update(textId, request);
     }
 
+    // patch
+    @PatchMapping("/like/{textId}")
+    public void updateLike(@PathVariable Long textId){ boardService.updateLike(textId); }
+
+    @PatchMapping("/sad/{textId}")
+    public void updateSad(@PathVariable Long textId){ boardService.updateSad(textId); }
+
+    @PatchMapping("/love/{textId}")
+    public void updateLove(@PathVariable Long textId){ boardService.updateLove(textId); }
+
+    @PatchMapping("/view/{textId}")
+    public void updateView(@PathVariable Long textId){ boardService.updateView(textId); }
+
     // Delete
-    @DeleteMapping("/{text_id}")
+    @DeleteMapping("/{textId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long text_id){
-        boardService.delete(text_id);
+    public void delete(@PathVariable Long textId){
+        boardService.delete(textId);
     }
 }

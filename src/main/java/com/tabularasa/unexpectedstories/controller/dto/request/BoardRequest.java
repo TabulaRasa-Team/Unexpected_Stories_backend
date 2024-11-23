@@ -11,5 +11,5 @@ public class BoardRequest {
 
     private String title;
     private String content;
-    private String busstop;
+    private String busStop;
 }

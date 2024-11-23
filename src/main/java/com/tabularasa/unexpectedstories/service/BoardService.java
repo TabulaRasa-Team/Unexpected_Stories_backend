@@ -16,14 +16,13 @@ import java.util.Random;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    public Long save (BoardRequest request){
+    public void save (BoardRequest request){
         Board board = Board.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
-                .busstop(request.getBusstop())
+                .busstop(request.getBusStop())
                 .build();
-        Board save = boardRepository.save(board);
-        return save.getText_id();
+        boardRepository.save(board);
     }
 
     public List<BoardResponse> findAll(){
@@ -37,16 +36,51 @@ public class BoardService {
         random.setSeed(System.currentTimeMillis());
 
         List<BoardResponse> boards = findAll();
-        int random_id = random.nextInt(boards.size());
+        int randomId = random.nextInt(boards.size());
 
-        return boards.get(random_id);
+        return boards.get(randomId);
+    }
+
+    public BoardResponse findById(Long textId){
+        Board board = boardRepository.findById(textId)
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+
+        return new BoardResponse(board);
     }
 
     @Transactional
-    public void update(Long text_id, BoardRequest request){
-        Board board = boardRepository.findById(text_id)
+    public void update(Long textId, BoardRequest request){
+        Board board = boardRepository.findById(textId)
                 .orElseThrow(() -> new IllegalArgumentException("Board not found"));
         board.update(request.getTitle(), request.getContent());
+    }
+
+    @Transactional
+    public void updateLike(Long textId){
+        Board board = boardRepository.findById(textId)
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+        board.updateLike(board.getFeelingLike());
+    }
+
+    @Transactional
+    public void updateSad(Long textId){
+        Board board = boardRepository.findById(textId)
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+        board.updateSad(board.getFeelingSad());
+    }
+
+    @Transactional
+    public void updateLove(Long textId){
+        Board board = boardRepository.findById(textId)
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+        board.updateLove(board.getFeelingLove());
+    }
+
+    @Transactional
+    public void updateView(Long textId){
+        Board board = boardRepository.findById(textId)
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+        board.updateView(board.getCountView());
     }
 
     public void delete(Long text_id){

@@ -16,7 +16,7 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long text_id;
+    private Long textId;
 
     @Column(nullable = false)
     private String title;
@@ -30,7 +30,13 @@ public class Board {
     private String date;
 
     @Column(nullable = false)
-    private String busstop;
+    private String busStop;
+
+    private Integer feelingLike;
+    private Integer feelingSad;
+    private Integer feelingLove;
+
+    private Integer countView;
 
     @Builder
     public Board(String title, String content, String busstop) {
@@ -38,12 +44,31 @@ public class Board {
         this.content = content;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.HH.mm");
         this.date = LocalDateTime.now().format(formatter);
-        this.busstop = busstop;
-
+        this.busStop = busstop;
+        this.feelingLike = 0;
+        this.feelingSad = 0;
+        this.feelingLove = 0;
+        this.countView = 0;
     }
 
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void updateLike(Integer like) {
+        this.feelingLike = like + 1;
+    }
+
+    public void updateSad(Integer sad) {
+        this.feelingSad = sad + 1;
+    }
+
+    public void updateLove(Integer love) {
+        this.feelingLove = love + 1;
+    }
+
+    public void updateView(Integer view) {
+        this.countView = view + 1;
     }
 }
