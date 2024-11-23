@@ -12,9 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000",
                         "http://10.150.151.211:3000",
-                        "http://172.30.1.2:3000",
-                        "http://172.30.1.14:3000",
-                        "http://172.30.1.82:3000", 
+                        "http://192.168.0.12:3000",
                         "https://unexpected-stories-front.vercel.app",
                         "https://unexpected-stories-front.vercel.app/") // 허용할 도메인들 설정
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 허용할 HTTP 메소드 설정
