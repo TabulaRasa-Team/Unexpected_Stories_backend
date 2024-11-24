@@ -42,9 +42,7 @@ public class BoardController {
     // Put
     @PutMapping("/{textId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Long textId, @RequestBody BoardRequest request){
-        boardService.update(textId, request);
-    }
+    public void update(@PathVariable Long textId, @RequestBody BoardRequest request) { boardService.update(textId, request); }
 
     // patch
     @PatchMapping("/like/{textId}")
