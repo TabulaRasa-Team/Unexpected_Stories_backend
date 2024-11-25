@@ -31,12 +31,34 @@ public class BoardService {
                 .toList();
     }
 
+    /*
+    public Board findRandom1(){
+        Random random = new Random();
+        random.setSeed(System.currentTimeMillis());
+
+        List<BoardResponse> boards = findAll();
+        int randomId = random.nextInt(boards.size());
+
+        BoardResponse boardRandom = boards.get(randomId);
+        Board board = boardRepository.findById(boardRandom.getTextId())
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+
+        return boardRandom.updateView(board);
+    }
+     */
+
+    @Transactional
     public BoardResponse findRandom(){
         Random random = new Random();
         random.setSeed(System.currentTimeMillis());
 
         List<BoardResponse> boards = findAll();
         int randomId = random.nextInt(boards.size());
+
+        Board board = boardRepository.findById(boards.get(randomId).getTextId())
+                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
+        board.updateView(board.getCountView());
+        System.out.println(board.getCountView());
 
         return boards.get(randomId);
     }

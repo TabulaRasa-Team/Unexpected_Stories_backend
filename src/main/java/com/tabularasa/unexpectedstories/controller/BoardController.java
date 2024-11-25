@@ -2,6 +2,7 @@ package com.tabularasa.unexpectedstories.controller;
 
 import com.tabularasa.unexpectedstories.controller.dto.request.BoardRequest;
 import com.tabularasa.unexpectedstories.controller.dto.response.BoardResponse;
+import com.tabularasa.unexpectedstories.domain.Board;
 import com.tabularasa.unexpectedstories.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,9 +33,8 @@ public class BoardController {
 
     // random 하면 리스트를 받아와서 그 길이 중에서 랜덤함수로 그 번째 리스트 값을 보낸다
     @GetMapping("/random")
-    public BoardResponse findRandom(){
-        return boardService.findRandom();
-    }
+    // @PatchMapping("/random")
+    public BoardResponse findRandom(){ return boardService.findRandom(); }
 
     @GetMapping("/{textId}")
     public BoardResponse findById(@PathVariable Long textId){ return boardService.findById(textId); }

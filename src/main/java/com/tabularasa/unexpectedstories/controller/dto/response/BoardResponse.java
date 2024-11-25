@@ -27,4 +27,9 @@ public class BoardResponse {
         this.love = board.getFeelingLove();
         this.view = board.getCountView();
     }
+
+    public Board updateView(Board board) {
+        board.updateView(this.view);
+        return board;
+    }
 }
