@@ -33,7 +33,6 @@ public class BoardController {
 
     // random 하면 리스트를 받아와서 그 길이 중에서 랜덤함수로 그 번째 리스트 값을 보낸다
     @GetMapping("/random")
-    // @PatchMapping("/random")
     public BoardResponse findRandom(){ return boardService.findRandom(); }
 
     @GetMapping("/{textId}")
@@ -53,9 +52,6 @@ public class BoardController {
 
     @PatchMapping("/love/{textId}")
     public void updateLove(@PathVariable Long textId){ boardService.updateLove(textId); }
-
-    @PatchMapping("/view/{textId}")
-    public void updateView(@PathVariable Long textId){ boardService.updateView(textId); }
 
     // Delete
     @DeleteMapping("/{textId}")

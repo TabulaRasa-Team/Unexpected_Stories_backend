@@ -31,22 +31,6 @@ public class BoardService {
                 .toList();
     }
 
-    /*
-    public Board findRandom1(){
-        Random random = new Random();
-        random.setSeed(System.currentTimeMillis());
-
-        List<BoardResponse> boards = findAll();
-        int randomId = random.nextInt(boards.size());
-
-        BoardResponse boardRandom = boards.get(randomId);
-        Board board = boardRepository.findById(boardRandom.getTextId())
-                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
-
-        return boardRandom.updateView(board);
-    }
-     */
-
     @Transactional
     public BoardResponse findRandom(){
         Random random = new Random();
@@ -96,13 +80,6 @@ public class BoardService {
         Board board = boardRepository.findById(textId)
                 .orElseThrow(() -> new IllegalArgumentException("Board not found"));
         board.updateLove(board.getFeelingLove());
-    }
-
-    @Transactional
-    public void updateView(Long textId){
-        Board board = boardRepository.findById(textId)
-                .orElseThrow(() -> new IllegalArgumentException("Board not found"));
-        board.updateView(board.getCountView());
     }
 
     public void delete(Long text_id){
